@@ -41,16 +41,30 @@ string cipher(string msg, string keyword)
 
     for (int i = 0; i<msg.size(); i++)
     {
-        msg[i] = toupper(msg[i]);
         keyword[i] = toupper(keyword[i]);
      }
 
     for (int i = 0; i<msg.size(); i++)
     {
-        cout << "m: " << msg[i] << " " << "k: " << keyword[i] << "\n";
-        char temp = (msg[i] - 'A' + keyword[i] - 'A') % 26 + 'A';
-        encrypted_msg[i] = char(temp);
+
+      char c = msg[i];
+    if (c == ' ')
+         encrypted_msg[i] = ' ';
+    else{
+        
+      if (c >= 'a' and c <= 'z')
+         c += 'A' - 'a';
+      else if (c < 'A' or c > 'Z')
+         continue;
+
+      char temp = (c - 'A' + keyword[i] - 'A') % 26 + 'A';
+
+      if (msg[i] >= 'a' and msg[i] <= 'z')
+            temp = (char)tolower(temp);
+      encrypted_msg[i] = char(temp);
     }
+    }
+
 
     return string(encrypted_msg);
 }
@@ -60,29 +74,55 @@ string cipher(string msg, string keyword)
 
 string decipher(string msg, string keyword)
 {
-    char encrypted_msg[msg.size()];
+    char decrypted_msg[msg.size()];
 
 
     for (int i = 0; i<msg.size(); i++)
     {
-        msg[i] = toupper(msg[i]);
+        // msg[i] = toupper(msg[i]);
         keyword[i] = toupper(keyword[i]);
      }
 
     for (int i = 0; i<msg.size(); i++)
     {
-        char temp = (msg[i] - 'A' - (keyword[i] - 'A') + 26) % 26 + 'A';
-        encrypted_msg[i] = char(temp);
+
+
+        char c = msg[i];
+
+
+    if(c == ' ')
+    {
+         decrypted_msg[i] = ' ';
+    }
+    else{
+
+        if (c >= 'a' and c <= 'z')
+            c += 'A' - 'a';
+        else if (c < 'A' or c > 'Z')
+            continue;
+
+        char temp = (c - 'A' - (keyword[i] - 'A') + 26) % 26 + 'A';
+        
+        
+        if (msg[i] >= 'a' and msg[i] <= 'z')
+            temp = (char)tolower(temp);
+        decrypted_msg[i] = char(temp);
     }
 
-    return string(encrypted_msg);
+    }
+
+
+
+
+
+    return string(decrypted_msg);
 }
 int main()
 {
     string msg;
     string key;
     cout << "Input the message you want to encode";
-    cin >> msg;
+    getline(cin, msg);
 
     cout << "Input the key you want to encode with:";
     cin >> key;
