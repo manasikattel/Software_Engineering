@@ -133,7 +133,7 @@ int main()
 
     std::string keyword = create_keyword(key, msg.size() );    
     std::string encrypted_msg = cipher(msg, keyword);
-    std::cout << encrypted_msg;
+    std::cout << "Encrypted message: "<<encrypted_msg << "\n";
 
     std::cout << "Deciphered: ";
     std::cout << decipher(encrypted_msg, keyword);
