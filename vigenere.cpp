@@ -12,7 +12,7 @@
  */
 std::string create_keyword(std::string key, int len)    
 {
-    char keyword[100];
+    char keyword[len];
     int j=0;
     for(int i=0; i < len; i++){
         if(j == key.size())
