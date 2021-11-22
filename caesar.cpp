@@ -111,7 +111,9 @@ std::string Sentence_Decryption(std::string sentence, int key)
 int main()
 {
 
-    std::string example_sentence ="THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG";
+    std::string example_sentence;
+    std:: cout << "Enter the message that you want to encode:"<<std::endl;
+    getline(std::cin,example_sentence);
     std::string result= Sentence_Encryption(example_sentence, 23);
     std::string result_decrypted= Sentence_Decryption(result,23);
     std::cout<<"Original Sentence"<<std::endl;
